@@ -28,7 +28,8 @@ export function SiteHeader() {
             alt={siteConfig.name}
             fill
             priority
-            sizes="144px"
+            quality={85}
+            sizes="(max-width: 768px) 100px, 144px"
             className="object-contain object-left"
           />
         </Link>
@@ -42,7 +43,7 @@ export function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "transition hover:text-page-fg",
+                  "transition hover:text-page-fg focus-visible:outline-2 focus-visible:outline-emerald-300 focus-visible:outline-offset-2 rounded-sm px-2 py-1",
                   isActive && "text-page-fg",
                 )}
               >
@@ -59,7 +60,7 @@ export function SiteHeader() {
 
         <Link
           href="/contact"
-          className="hidden shrink-0 rounded-full bg-page-fg px-5 py-3 text-sm font-bold text-page transition hover:scale-[1.02] md:inline-flex"
+          className="hidden shrink-0 rounded-full bg-page-fg px-5 py-3 text-sm font-bold text-page transition hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-emerald-300 focus-visible:outline-offset-2 md:inline-flex"
         >
           Start Project
         </Link>
@@ -69,8 +70,10 @@ export function SiteHeader() {
           <button
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
-            className="rounded-full border border-border-token px-4 py-2 text-sm font-bold"
+            aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={menuOpen}
+            aria-controls="mobile-nav"
+            className="rounded-full border border-border-token px-4 py-3 text-sm font-bold focus-visible:outline-2 focus-visible:outline-emerald-300 focus-visible:outline-offset-2 min-h-12 min-w-12"
           >
             Menu
           </button>
@@ -81,6 +84,7 @@ export function SiteHeader() {
         {menuOpen && (
           <motion.div
             key="mobile-nav"
+            id="mobile-nav"
             initial="closed"
             animate="open"
             exit="closed"
@@ -100,7 +104,7 @@ export function SiteHeader() {
                   <Link
                     href={item.href}
                     onClick={() => setMenuOpen(false)}
-                    className="text-lg font-semibold text-page-fg"
+                    className="text-lg font-semibold text-page-fg focus-visible:outline-2 focus-visible:outline-emerald-300 focus-visible:outline-offset-2 rounded-sm px-2 py-1 inline-block"
                   >
                     {item.label}
                   </Link>
@@ -115,7 +119,7 @@ export function SiteHeader() {
                 <Link
                   href="/contact"
                   onClick={() => setMenuOpen(false)}
-                  className="rounded-full bg-page-fg px-5 py-3 text-center font-bold text-page"
+                  className="rounded-full bg-page-fg px-5 py-3 text-center font-bold text-page focus-visible:outline-2 focus-visible:outline-emerald-300 focus-visible:outline-offset-2 inline-block"
                 >
                   Start Project
                 </Link>
