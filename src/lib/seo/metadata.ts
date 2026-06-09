@@ -28,14 +28,33 @@ export const defaultMetadata: Metadata = {
     title: siteConfig.name,
     description:
       "Website and digital marketing portfolio — websites, stores, campaigns, and growth systems.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "AJADEX Expert Enterprise - Premium Digital Marketing Agency",
+        type: "image/png",
+      },
+    ],
+    url: siteUrl,
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.name,
     description:
       "Website and digital marketing portfolio for brands that want to grow online.",
+    creator: "@ajadex_ng",
+    images: ["/twitter-card.png"],
   },
-  robots: { index: true, follow: true },
+  robots: { index: true, follow: true, "max-image-preview": "large" },
+  authors: [{ name: "AJADEX Expert Enterprise", url: siteUrl }],
+  creator: "AJADEX Expert Enterprise",
+  formatDetection: {
+    email: true,
+    address: true,
+    telephone: true,
+  },
 };
 
 type PageSeoKey = "home" | "services" | "about" | "work" | "contact";
@@ -82,15 +101,105 @@ export function createPageMetadata(page: PageSeoKey): Metadata {
   return {
     title: entry.title,
     description: entry.description,
-    alternates: { canonical: entry.path },
+    alternates: { canonical: `${siteUrl}${entry.path}` },
     openGraph: {
       title: entry.title,
       description: entry.description,
       url: entry.path,
+      images: [
+        {
+          url: "/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: entry.title,
+          type: "image/png",
+        },
+      ],
     },
     twitter: {
       title: entry.title,
       description: entry.description,
+      images: ["/twitter-card.png"],
+    },
+  };
+}
+
+/**
+ * SEO JSON-LD Schema - Organization
+ */
+export function getOrganizationSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "AJADEX Expert Enterprise",
+    alternateName: "AJADEX",
+    description:
+      "Premium digital agency providing websites, ecommerce, digital marketing, and brand growth systems.",
+    url: siteUrl,
+    logo: `${siteUrl}/logo.png`,
+    sameAs: [
+      "https://twitter.com/ajadex_ng",
+      "https://www.linkedin.com/company/ajadex",
+    ],
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Lagos",
+      addressCountry: "NG",
+      addressLocality: "Lagos",
+    },
+    contact: {
+      "@type": "ContactPoint",
+      contactType: "Customer Service",
+      telephone: "+2347014080845",
+      email: siteConfig.email,
+    },
+  };
+}
+
+/**
+ * SEO JSON-LD Schema - Local Business
+ */
+export function getLocalBusinessSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "AJADEX Expert Enterprise",
+    description: "Premium digital agency for websites and digital marketing",
+    image: `${siteUrl}/og-image.png`,
+    priceRange: "$$",
+    telephone: "+2347014080845",
+    email: siteConfig.email,
+    url: siteUrl,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Lagos",
+      addressCountry: "NG",
+    },
+    areaServed: ["NG", "USA", "UK", "EU"],
+    service: [
+      {
+        "@type": "Service",
+        name: "Website Design & Development",
+        description:
+          "Custom websites, ecommerce stores, landing pages, and online presence solutions",
+      },
+      {
+        "@type": "Service",
+        name: "Digital Marketing",
+        description: "Paid ads, SEO, content strategy, and marketing campaigns",
+      },
+      {
+        "@type": "Service",
+        name: "Brand Growth Systems",
+        description:
+          "Complete brand positioning, messaging, and customer journey optimization",
+      },
+    ],
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5",
+      bestRating: "5",
+      ratingCount: "2",
     },
   };
 }
