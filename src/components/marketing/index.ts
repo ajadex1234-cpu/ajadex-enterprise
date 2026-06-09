@@ -1,8 +1,6 @@
 export { CaseStudyShowcase } from "./CaseStudyShowcase";
 export { ClientLogos } from "./ClientLogos";
-export { ClientResults } from "./ClientResults";
 export { FAQSection } from "./FAQSection";
-export { GoogleAdsProof } from "./GoogleAdsProof";
 export { PortfolioFilter } from "./PortfolioFilter";
 export { PremiumCTA } from "./PremiumCTA";
 export { ProcessTimeline } from "./ProcessTimeline";

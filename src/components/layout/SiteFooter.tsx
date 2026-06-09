@@ -19,8 +19,8 @@ export function SiteFooter() {
             />
           </Link>
           <p className="mt-4 max-w-md leading-7 text-zinc-400">
-            Ecommerce development, digital marketing, and brand growth systems
-            for businesses building stronger online revenue.
+            Website design, ecommerce development, digital marketing, and brand
+            growth systems for businesses building a stronger online presence.
           </p>
           <p className="mt-6 text-sm text-zinc-500">
             Lagos, Nigeria. Serving brands online.
@@ -70,7 +70,7 @@ export function SiteFooter() {
           Copyright {new Date().getFullYear()} Ajadex Expert Enterprise. All
           rights reserved.
         </p>
-        <p>Portfolio site for ecommerce and digital marketing work.</p>
+        <p>Portfolio site for website and digital marketing work.</p>
       </div>
     </footer>
   );

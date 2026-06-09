@@ -1,19 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { testimonials } from "@/data/testimonials";
+import { useRotatingIndex } from "@/hooks/useRotatingIndex";
 import { motionEase } from "@/lib/motion";
 
 export function TestimonialSlider() {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = window.setInterval(() => {
-      setIndex((current) => (current + 1) % testimonials.length);
-    }, 6000);
-    return () => window.clearInterval(timer);
-  }, []);
+  const { index, goNext, goPrevious, goTo, pause, resume } = useRotatingIndex(
+    testimonials.length,
+    { intervalMs: 5500, autoplay: true },
+  );
 
   const active = testimonials[index];
 
@@ -29,7 +25,11 @@ export function TestimonialSlider() {
 
         <motion.div
           layout
-          className="relative mt-12 overflow-hidden rounded-lg border border-white/10 bg-black/60 p-8 md:p-12"
+          className="relative mt-12 overflow-hidden rounded-lg border border-border-token bg-card/60 p-8 md:p-12"
+          onMouseEnter={pause}
+          onMouseLeave={resume}
+          onFocus={pause}
+          onBlur={resume}
         >
           <AnimatePresence mode="wait">
             <motion.blockquote
@@ -61,7 +61,7 @@ export function TestimonialSlider() {
                 <button
                   key={item.id}
                   type="button"
-                  onClick={() => setIndex(i)}
+                  onClick={() => goTo(i)}
                   aria-label={`Show testimonial ${i + 1}`}
                   className={`h-2 rounded-full transition-all ${
                     i === index
@@ -74,11 +74,7 @@ export function TestimonialSlider() {
             <div className="flex gap-2">
               <button
                 type="button"
-                onClick={() =>
-                  setIndex(
-                    (index - 1 + testimonials.length) % testimonials.length,
-                  )
-                }
+                onClick={goPrevious}
                 className="rounded-full border border-white/15 px-4 py-2 text-sm font-bold transition hover:bg-white hover:text-black"
                 aria-label="Previous testimonial"
               >
@@ -86,7 +82,7 @@ export function TestimonialSlider() {
               </button>
               <button
                 type="button"
-                onClick={() => setIndex((index + 1) % testimonials.length)}
+                onClick={goNext}
                 className="rounded-full border border-white/15 px-4 py-2 text-sm font-bold transition hover:bg-white hover:text-black"
                 aria-label="Next testimonial"
               >

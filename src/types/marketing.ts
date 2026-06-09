@@ -1,20 +1,17 @@
-export type PortfolioCategory =
-  | "all"
-  | "ecommerce"
-  | "paid-ads"
-  | "brand";
+import type {
+  PortfolioCategoryOption,
+  PortfolioFilterCategory,
+  PortfolioItem as PortfolioItemRecord,
+  PortfolioItemKind,
+  PortfolioMetric,
+} from "@/types/portfolio";
 
-export type PortfolioItem = {
-  id: string;
-  title: string;
-  category: Exclude<PortfolioCategory, "all">;
-  kind: "client" | "concept";
-  image: string;
-  summary: string;
-  link?: string;
-  cta?: string;
-  metrics?: { value: string; label: string }[];
-};
+/** @deprecated Use `PortfolioFilterCategory` from `@/types/portfolio`. */
+export type PortfolioCategory = PortfolioFilterCategory;
+
+export type PortfolioItem = PortfolioItemRecord;
+
+export type { PortfolioItemKind, PortfolioMetric, PortfolioCategoryOption };
 
 export type CaseStudy = {
   id: string;

@@ -1,3 +1,13 @@
+export type {
+  PortfolioCategoryOption,
+  PortfolioCategorySlug,
+  PortfolioFilterCategory,
+  PortfolioItem,
+  PortfolioItemKind,
+  PortfolioMetric,
+  PortfolioQueryOptions,
+} from "./portfolio";
+
 export type FAQItem = {
   question: string;
   answer: string;

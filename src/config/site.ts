@@ -1,12 +1,12 @@
 export const siteConfig = {
   name: "AJADEX Expert Enterprise",
-  tagline: "Ecommerce & Digital Marketing",
+  tagline: "Websites & Digital Marketing",
   email: "ajadexenterprise@gmail.com",
   phone: "+234 701 408 0845",
   phoneE164: "2347014080845",
   location: "Lagos, Nigeria",
   defaultWhatsAppMessage:
-    "Hi AJADEX, I want to build or grow my ecommerce brand.",
+    "Hi AJADEX, I want to build a website or grow my brand online.",
   urls: {
     casaOfBloom: "https://casaofbloom.com",
     casaHumidifierLanding:

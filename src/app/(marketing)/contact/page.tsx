@@ -1,4 +1,6 @@
+import type { Metadata } from "next";
 import { ContactForm } from "@/components/ui/ContactForm";
+import { createPageMetadata } from "@/lib/seo/metadata";
 import { QuickSearch } from "@/components/ui/QuickSearch";
 import { SocialLinks } from "@/components/ui/SocialLinks";
 import { Container } from "@/components/layout/Container";
@@ -15,6 +17,8 @@ import {
   contactProjectTypes,
 } from "@/data/contact";
 
+export const metadata: Metadata = createPageMetadata("contact");
+
 export default function ContactPage() {
   return (
     <PageMain>
@@ -25,10 +29,10 @@ export default function ContactPage() {
               Contact
             </p>
             <h1 className="mt-5 text-5xl font-black tracking-tight md:text-7xl">
-              Let&apos;s build a better online sales system.
+              Let&apos;s build a better website and online growth system.
             </h1>
             <p className="mt-7 text-lg leading-8 text-zinc-300">
-              Tell AJADEX what you sell, where your brand is now, and what you
+              Tell AJADEX what you do, where your brand is now, and what you
               want to improve next. The best projects start with a clear goal.
             </p>
 
@@ -117,7 +121,7 @@ export default function ContactPage() {
         variant="default"
         eyebrow="Next step"
         title="Turn the conversation into a growth plan."
-        description="Share your product, goal, and timeline. AJADEX will recommend whether to start with store, ads, or brand systems."
+        description="Share your business, goal, and timeline. AJADEX will recommend whether to start with website, ads, SEO, content, or brand systems."
         primaryLabel="Send inquiry"
         primaryHref="#contact-form"
       />

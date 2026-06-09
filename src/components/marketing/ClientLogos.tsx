@@ -18,7 +18,7 @@ export function ClientLogos() {
           variants={fadeUp}
           className="text-center text-sm font-bold uppercase tracking-[0.2em] text-zinc-500"
         >
-          Trusted by growing ecommerce brands
+          Trusted by growing online brands
         </motion.p>
         <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
           {clientLogos.map((logo) => (

@@ -12,7 +12,7 @@ type StrategyCallBookingProps = {
 
 export function StrategyCallBooking({ compact = false }: StrategyCallBookingProps) {
   const whatsappHref = `https://wa.me/${siteConfig.phoneE164}?text=${encodeURIComponent(
-    "Hi AJADEX, I would like to book a strategy call about my ecommerce brand.",
+    "Hi AJADEX, I would like to book a strategy call about my website or digital marketing project.",
   )}`;
 
   return (
@@ -38,8 +38,8 @@ export function StrategyCallBooking({ compact = false }: StrategyCallBookingProp
             Book a focused growth conversation.
           </h2>
           <p className="mt-6 leading-8 text-zinc-400">
-            A short call to clarify your product, current online setup, and the
-            fastest path to a stronger store, campaign, or launch system.
+            A short call to clarify your business, current online setup, and
+            the fastest path to a stronger website, campaign, or launch system.
           </p>
           <div className="mt-8 space-y-2 text-sm text-zinc-500">
             <p>{siteConfig.email}</p>

@@ -3,18 +3,24 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { QuickSearch } from "@/components/ui/QuickSearch";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { siteConfig } from "@/config/site";
-import { theme } from "@/config/theme";
 import { mainNavItems } from "@/constants/navigation";
+import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
+import { mobileNavItem, mobileNavPanel } from "@/lib/motion/presets";
+import { cn } from "@/utils/cn";
 
 export function SiteHeader() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  useBodyScrollLock(menuOpen);
+
   return (
-    <header className={theme.layout.header}>
+    <header className="fixed top-0 z-50 w-full border-b border-border-token bg-[var(--header-bg)] backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link href="/" className="relative block h-12 w-36">
           <Image
@@ -27,7 +33,7 @@ export function SiteHeader() {
           />
         </Link>
 
-        <nav className="hidden items-center gap-8 text-sm text-zinc-300 md:flex">
+        <nav className="hidden items-center gap-8 text-sm text-muted-fg md:flex">
           {mainNavItems.map((item) => {
             const isActive = pathname === item.href;
 
@@ -35,9 +41,10 @@ export function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`transition hover:text-white ${
-                  isActive ? "text-white" : ""
-                }`}
+                className={cn(
+                  "transition hover:text-page-fg",
+                  isActive && "text-page-fg",
+                )}
               >
                 {item.label}
               </Link>
@@ -45,51 +52,79 @@ export function SiteHeader() {
           })}
         </nav>
 
-        <div className="hidden lg:block">
+        <div className="hidden items-center gap-3 lg:flex">
           <QuickSearch compact />
+          <ThemeToggle />
         </div>
 
         <Link
           href="/contact"
-          className="hidden shrink-0 rounded-full bg-white px-5 py-3 text-sm font-bold text-black transition hover:scale-[1.02] md:inline-flex"
+          className="hidden shrink-0 rounded-full bg-page-fg px-5 py-3 text-sm font-bold text-page transition hover:scale-[1.02] md:inline-flex"
         >
           Start Project
         </Link>
 
-        <button
-          type="button"
-          onClick={() => setMenuOpen((open) => !open)}
-          className="rounded-full border border-white/15 px-4 py-2 text-sm font-bold md:hidden"
-          aria-expanded={menuOpen}
-        >
-          Menu
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle />
+          <button
+            type="button"
+            onClick={() => setMenuOpen((open) => !open)}
+            className="rounded-full border border-border-token px-4 py-2 text-sm font-bold"
+            aria-expanded={menuOpen}
+          >
+            Menu
+          </button>
+        </div>
       </div>
 
-      {menuOpen && (
-        <div className="border-t border-white/10 bg-black px-6 py-6 md:hidden">
-          <nav className="flex flex-col gap-5 text-zinc-300">
-            {mainNavItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setMenuOpen(false)}
-                className="text-lg font-semibold"
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            key="mobile-nav"
+            initial="closed"
+            animate="open"
+            exit="closed"
+            variants={mobileNavPanel}
+            className="overflow-hidden border-t border-border-token bg-card md:hidden"
+          >
+            <nav className="flex flex-col gap-5 px-6 py-6 text-muted-fg">
+              {mainNavItems.map((item, index) => (
+                <motion.div
+                  key={item.href}
+                  custom={index}
+                  variants={mobileNavItem}
+                  initial="closed"
+                  animate="open"
+                  exit="closed"
+                >
+                  <Link
+                    href={item.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="text-lg font-semibold text-page-fg"
+                  >
+                    {item.label}
+                  </Link>
+                </motion.div>
+              ))}
+              <motion.div
+                custom={mainNavItems.length}
+                variants={mobileNavItem}
+                initial="closed"
+                animate="open"
               >
-                {item.label}
-              </Link>
-            ))}
-            <Link
-              href="/contact"
-              onClick={() => setMenuOpen(false)}
-              className="rounded-full bg-white px-5 py-3 text-center font-bold text-black"
-            >
-              Start Project
-            </Link>
-            <QuickSearch />
-          </nav>
-        </div>
-      )}
+                <Link
+                  href="/contact"
+                  onClick={() => setMenuOpen(false)}
+                  className="rounded-full bg-page-fg px-5 py-3 text-center font-bold text-page"
+                >
+                  Start Project
+                </Link>
+              </motion.div>
+              <QuickSearch />
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

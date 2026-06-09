@@ -1,4 +1,6 @@
+import type { Metadata } from "next";
 import { Container } from "@/components/layout/Container";
+import { createPageMetadata } from "@/lib/seo/metadata";
 import { PageHero } from "@/components/layout/PageHero";
 import { PageMain } from "@/components/layout/PageMain";
 import { Section } from "@/components/layout/Section";
@@ -9,6 +11,8 @@ import { ServicesComparison } from "@/components/marketing/ServicesComparison";
 import { StrategyCallBooking } from "@/components/marketing/StrategyCallBooking";
 import { serviceFaqs, servicePackages } from "@/data/services";
 
+export const metadata: Metadata = createPageMetadata("services");
+
 export default function ServicesPage() {
   return (
     <PageMain>
@@ -18,19 +22,19 @@ export default function ServicesPage() {
             Services
           </p>
           <h1 className="mt-5 max-w-4xl text-5xl font-black tracking-tight md:text-7xl">
-            Ecommerce and marketing systems built to support real sales.
+            Websites and digital marketing systems built to support real growth.
           </h1>
           <p className="mt-7 max-w-3xl text-lg leading-8 text-zinc-300">
             AJADEX helps brands move from scattered online activity to a
-            connected system: store, offer, ads, content, follow-up, and
-            performance tracking.
+            connected system: website, offer, ads, SEO, content, follow-up,
+            and performance tracking.
           </p>
         </Container>
       </PageHero>
 
       <FAQSection
         eyebrow="Service FAQ"
-        title="What to know before choosing a service."
+        title="Advanced answers before choosing a service."
         items={serviceFaqs}
       />
 
@@ -66,8 +70,8 @@ export default function ServicesPage() {
 
       <PremiumCTA
         variant="emerald"
-        title="Need a store, campaign, or full growth system?"
-        description="Send your product details, current website if you have one, and the goal you want the brand to reach next."
+        title="Need a website, campaign, or full growth system?"
+        description="Send your business details, current website if you have one, and the goal you want the brand to reach next."
         primaryLabel="Discuss a Project"
         primaryHref="/contact"
       />

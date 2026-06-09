@@ -1,9 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { createPageMetadata } from "@/lib/seo/metadata";
 import { Container } from "@/components/layout/Container";
 import { PageHero } from "@/components/layout/PageHero";
 import { PageMain } from "@/components/layout/PageMain";
 import { Section } from "@/components/layout/Section";
 import { aboutMissionCards, aboutValues } from "@/data/about";
+
+export const metadata: Metadata = createPageMetadata("about");
 
 export default function AboutPage() {
   return (
@@ -14,12 +18,12 @@ export default function AboutPage() {
             About
           </p>
           <h1 className="mt-5 max-w-4xl text-5xl font-black tracking-tight md:text-7xl">
-            AJADEX is a digital growth partner for ecommerce brands.
+            AJADEX is a website and digital marketing partner for growing brands.
           </h1>
           <p className="mt-7 max-w-3xl text-lg leading-8 text-zinc-300">
-            AJADEX Expert Enterprise helps product-led businesses build the
-            digital foundation they need to look credible, launch better, and
-            market with more structure.
+            AJADEX Expert Enterprise helps businesses build the digital
+            foundation they need to look credible, launch better, generate
+            attention, and market with more structure.
           </p>
         </Container>
       </PageHero>
@@ -34,15 +38,15 @@ export default function AboutPage() {
 
           <div className="space-y-6 text-lg leading-8 text-zinc-300">
             <p>
-              Many ecommerce brands do not fail because the product is bad.
-              They struggle because the online experience is unclear: the page
-              does not explain the offer, the ads are disconnected from the
+              Many businesses do not struggle because the offer is bad. They
+              struggle because the online experience is unclear: the website
+              does not explain the value, the marketing is disconnected from the
               landing page, and there is no follow-up system after attention is
               earned.
             </p>
             <p>
               AJADEX focuses on that entire journey. The goal is to help a
-              brand present products clearly, create stronger campaigns, and
+              brand present its offer clearly, create stronger campaigns, and
               build assets that can be improved over time.
             </p>
           </div>

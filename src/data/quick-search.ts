@@ -4,7 +4,7 @@ export const quickSearchItems: QuickSearchItem[] = [
   {
     title: "Services",
     href: "/services",
-    description: "Ecommerce builds, ads, and brand scaling.",
+    description: "Websites, ecommerce, ads, SEO, content, and brand scaling.",
   },
   {
     title: "Real Work",
@@ -17,9 +17,19 @@ export const quickSearchItems: QuickSearchItem[] = [
     description: "Campaign dashboard and humidifier landing page.",
   },
   {
-    title: "Shopify Store Build",
+    title: "Client Website Build",
     href: "/work",
     description: "Casa of Bloom client store result.",
+  },
+  {
+    title: "Website Design",
+    href: "/services",
+    description: "Business websites, landing pages, portfolios, and booking pages.",
+  },
+  {
+    title: "Digital Marketing",
+    href: "/services",
+    description: "Google Ads, Meta Ads, TikTok Ads, SEO, content, and funnels.",
   },
   {
     title: "About AJADEX",

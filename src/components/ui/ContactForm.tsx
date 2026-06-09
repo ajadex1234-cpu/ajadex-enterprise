@@ -4,11 +4,15 @@ import { FormEvent, useMemo, useState } from "react";
 import { contactFormProjectOptions } from "@/data/contact";
 import { siteConfig } from "@/config/site";
 
+type ContactProjectOption = (typeof contactFormProjectOptions)[number];
+
 export function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [brand, setBrand] = useState("");
-  const [projectType, setProjectType] = useState("New ecommerce website");
+  const [projectType, setProjectType] = useState<ContactProjectOption>(
+    contactFormProjectOptions[0],
+  );
   const [message, setMessage] = useState("");
 
   const inquiryText = useMemo(() => {
@@ -73,7 +77,9 @@ export function ContactForm() {
         />
         <select
           value={projectType}
-          onChange={(event) => setProjectType(event.target.value)}
+          onChange={(event) =>
+            setProjectType(event.target.value as ContactProjectOption)
+          }
           className="rounded-lg border border-white/10 bg-black px-5 py-4 outline-none focus:border-emerald-300/60"
         >
           {contactFormProjectOptions.map((option) => (

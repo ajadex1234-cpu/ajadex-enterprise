@@ -1,26 +1,98 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* —— Premium agency tokens (dark default) —— */
+:root,
+html.dark,
+[data-theme="dark"] {
+  --page-bg: #070707;
+  --page-fg: #ffffff;
+  --muted-fg: #d4d4d8;
+  --soft-fg: #a1a1aa;
+  --card-bg: #000000;
+  --card-elevated: rgba(255, 255, 255, 0.035);
+  --border: rgba(255, 255, 255, 0.1);
+  --header-bg: rgba(0, 0, 0, 0.8);
+  --skeleton: rgba(255, 255, 255, 0.06);
+  --background: var(--page-bg);
+  --foreground: var(--page-fg);
+}
+
+html.light,
+[data-theme="light"] {
+  --page-bg: #f7f6f3;
+  --page-fg: #0c0c0c;
+  --muted-fg: #3f3f46;
+  --soft-fg: #52525b;
+  --card-bg: #ffffff;
+  --card-elevated: rgba(0, 0, 0, 0.03);
+  --border: rgba(0, 0, 0, 0.08);
+  --header-bg: rgba(255, 255, 255, 0.88);
+  --skeleton: rgba(0, 0, 0, 0.06);
+  --background: var(--page-bg);
+  --foreground: var(--page-fg);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-page: var(--page-bg);
+  --color-page-fg: var(--page-fg);
+  --color-muted-fg: var(--muted-fg);
+  --color-soft-fg: var(--soft-fg);
+  --color-card: var(--card-bg);
+  --color-border-token: var(--border);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-geist-sans);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--page-bg);
+  color: var(--page-fg);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-feature-settings: "ss01", "cv01";
+  letter-spacing: -0.011em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: -0.03em;
+  font-weight: 900;
+}
+
+.agency-eyebrow {
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.agency-display {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 900;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+
+@keyframes skeleton-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+.skeleton-shimmer {
+  animation: skeleton-pulse 1.4s ease-in-out infinite;
+  background: var(--skeleton);
 }

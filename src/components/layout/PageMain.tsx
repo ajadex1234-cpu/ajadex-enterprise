@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { theme } from "@/config/theme";
 import { cn } from "@/utils/cn";
 
 type PageMainProps = {
@@ -8,5 +7,14 @@ type PageMainProps = {
 };
 
 export function PageMain({ children, className }: PageMainProps) {
-  return <main className={cn(theme.layout.page, className)}>{children}</main>;
+  return (
+    <main
+      className={cn(
+        "min-h-screen bg-page font-sans text-page-fg antialiased",
+        className,
+      )}
+    >
+      {children}
+    </main>
+  );
 }

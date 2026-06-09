@@ -4,12 +4,12 @@ export const agencyTrustMetrics: TrustMetric[] = [
   {
     value: "2+",
     label: "Live client systems",
-    detail: "Storefronts and campaigns in market",
+    detail: "Website and campaign proof in market",
   },
   {
     value: "3",
     label: "Growth disciplines",
-    detail: "Store, ads, and brand under one partner",
+    detail: "Websites, ads, and brand under one partner",
   },
   {
     value: "100%",
@@ -26,8 +26,8 @@ export const agencyTrustMetrics: TrustMetric[] = [
 export const clientResultMetrics: TrustMetric[] = [
   {
     value: "Live",
-    label: "Shopify store launched",
-    detail: "Casa of Bloom — browse-to-buy ready",
+    label: "Client website launched",
+    detail: "Casa of Bloom browse-to-buy ready",
   },
   {
     value: "Active",
@@ -40,7 +40,7 @@ export const clientResultMetrics: TrustMetric[] = [
     detail: "Ads, page, and store working together",
   },
   {
-    value: "0→1",
+    value: "0 to 1",
     label: "Ecommerce presence",
     detail: "From idea to shoppable brand online",
   },

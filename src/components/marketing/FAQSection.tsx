@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
+import { useAccordion } from "@/hooks/useAccordion";
 import type { FAQItem } from "@/types";
 
 type FAQSectionProps = {
@@ -15,7 +15,7 @@ export function FAQSection({
   title = "Questions clients usually ask before starting.",
   items,
 }: FAQSectionProps) {
-  const [openIndex, setOpenIndex] = useState(0);
+  const { openIndex, setOpenIndex } = useAccordion(0);
 
   return (
     <section className="border-y border-white/10 bg-[radial-gradient(circle_at_15%_0%,rgba(16,185,129,0.12),transparent_32%),linear-gradient(135deg,rgba(255,255,255,0.025),rgba(14,165,233,0.08))] px-6 py-20">

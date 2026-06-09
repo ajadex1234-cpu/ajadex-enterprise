@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useId, useMemo, useState } from "react";
-import { quickSearchItems } from "@/data/quick-search";
+import { useId, useMemo } from "react";
+import { useQuickSearch } from "@/hooks/useQuickSearch";
+import { buildQuickSearchIndex } from "@/lib/search";
 
 type QuickSearchProps = {
   compact?: boolean;
@@ -10,21 +11,17 @@ type QuickSearchProps = {
 
 export function QuickSearch({ compact = false }: QuickSearchProps) {
   const inputId = useId();
-  const [query, setQuery] = useState("");
-  const [focused, setFocused] = useState(false);
-
-  const results = useMemo(() => {
-    const normalizedQuery = query.trim().toLowerCase();
-
-    if (!normalizedQuery) {
-      return quickSearchItems.slice(0, compact ? 3 : 6);
-    }
-
-    return quickSearchItems.filter((item) => {
-      const searchable = `${item.title} ${item.description}`.toLowerCase();
-      return searchable.includes(normalizedQuery);
-    });
-  }, [compact, query]);
+  const searchItems = useMemo(() => buildQuickSearchIndex(), []);
+  const {
+    query,
+    setQuery,
+    setFocused,
+    results,
+    showResults,
+  } = useQuickSearch({
+    items: searchItems,
+    compact,
+  });
 
   return (
     <div className={compact ? "relative w-52" : "relative w-full"}>
@@ -46,7 +43,7 @@ export function QuickSearch({ compact = false }: QuickSearchProps) {
         />
       </div>
 
-      {(!compact || focused || query) && (
+      {showResults && (
         <div
           className={
             compact
