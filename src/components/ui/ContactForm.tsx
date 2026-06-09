@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { type FormEvent, useMemo, useState } from "react";
 import { contactFormProjectOptions } from "@/data/contact";
 import { siteConfig } from "@/config/site";
 
@@ -54,51 +54,91 @@ export function ContactForm() {
       </p>
 
       <div className="mt-8 grid gap-4">
-        <input
-          type="text"
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          placeholder="Your name"
-          className="rounded-lg border border-white/10 bg-black px-5 py-4 outline-none placeholder:text-zinc-600 focus:border-emerald-300/60"
-        />
-        <input
-          type="email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          placeholder="Email address"
-          className="rounded-lg border border-white/10 bg-black px-5 py-4 outline-none placeholder:text-zinc-600 focus:border-emerald-300/60"
-        />
-        <input
-          type="text"
-          value={brand}
-          onChange={(event) => setBrand(event.target.value)}
-          placeholder="Brand or business name"
-          className="rounded-lg border border-white/10 bg-black px-5 py-4 outline-none placeholder:text-zinc-600 focus:border-emerald-300/60"
-        />
-        <select
-          value={projectType}
-          onChange={(event) =>
-            setProjectType(event.target.value as ContactProjectOption)
-          }
-          className="rounded-lg border border-white/10 bg-black px-5 py-4 outline-none focus:border-emerald-300/60"
-        >
-          {contactFormProjectOptions.map((option) => (
-            <option key={option}>{option}</option>
-          ))}
-        </select>
-        <textarea
-          value={message}
-          onChange={(event) => setMessage(event.target.value)}
-          placeholder="What do you want to build or improve?"
-          rows={5}
-          className="rounded-lg border border-white/10 bg-black px-5 py-4 outline-none placeholder:text-zinc-600 focus:border-emerald-300/60"
-        />
+        <div>
+          <label htmlFor="name" className="sr-only">
+            Your name
+          </label>
+          <input
+            id="name"
+            type="text"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            placeholder="Your name"
+            className="rounded-lg border border-white/10 bg-black px-5 py-4 outline-none placeholder:text-zinc-600 focus:border-emerald-300/60 focus-visible:outline-2 focus-visible:outline-emerald-300 focus-visible:outline-offset-2"
+            required
+            aria-required="true"
+          />
+        </div>
+        <div>
+          <label htmlFor="email" className="sr-only">
+            Email address
+          </label>
+          <input
+            id="email"
+            type="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            placeholder="Email address"
+            className="rounded-lg border border-white/10 bg-black px-5 py-4 outline-none placeholder:text-zinc-600 focus:border-emerald-300/60 focus-visible:outline-2 focus-visible:outline-emerald-300 focus-visible:outline-offset-2"
+            required
+            aria-required="true"
+          />
+        </div>
+        <div>
+          <label htmlFor="brand" className="sr-only">
+            Brand or business name
+          </label>
+          <input
+            id="brand"
+            type="text"
+            value={brand}
+            onChange={(event) => setBrand(event.target.value)}
+            placeholder="Brand or business name"
+            className="rounded-lg border border-white/10 bg-black px-5 py-4 outline-none placeholder:text-zinc-600 focus:border-emerald-300/60 focus-visible:outline-2 focus-visible:outline-emerald-300 focus-visible:outline-offset-2"
+            required
+            aria-required="true"
+          />
+        </div>
+        <div>
+          <label htmlFor="project-type" className="sr-only">
+            Project type
+          </label>
+          <select
+            id="project-type"
+            value={projectType}
+            onChange={(event) =>
+              setProjectType(event.target.value as ContactProjectOption)
+            }
+            className="rounded-lg border border-white/10 bg-black px-5 py-4 outline-none focus:border-emerald-300/60 focus-visible:outline-2 focus-visible:outline-emerald-300 focus-visible:outline-offset-2"
+            required
+            aria-required="true"
+          >
+            {contactFormProjectOptions.map((option) => (
+              <option key={option}>{option}</option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label htmlFor="message" className="sr-only">
+            Project details
+          </label>
+          <textarea
+            id="message"
+            value={message}
+            onChange={(event) => setMessage(event.target.value)}
+            placeholder="What do you want to build or improve?"
+            rows={5}
+            className="rounded-lg border border-white/10 bg-black px-5 py-4 outline-none placeholder:text-zinc-600 focus:border-emerald-300/60 focus-visible:outline-2 focus-visible:outline-emerald-300 focus-visible:outline-offset-2"
+            required
+            aria-required="true"
+          />
+        </div>
       </div>
 
       <div className="mt-6 grid gap-3 sm:grid-cols-2">
         <button
           type="submit"
-          className="inline-flex justify-center rounded-full bg-white px-7 py-4 font-bold text-black transition hover:scale-[1.02]"
+          className="inline-flex justify-center rounded-full bg-white px-7 py-4 font-bold text-black transition hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-emerald-300 focus-visible:outline-offset-2 min-h-12"
         >
           Send by Email
         </button>
@@ -106,7 +146,7 @@ export function ContactForm() {
           href={whatsappHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex justify-center rounded-full border border-emerald-400/30 bg-emerald-400/10 px-7 py-4 font-bold text-emerald-100 transition hover:bg-emerald-400 hover:text-black"
+          className="inline-flex justify-center rounded-full border border-emerald-400/30 bg-emerald-400/10 px-7 py-4 font-bold text-emerald-100 transition hover:bg-emerald-400 hover:text-black focus-visible:outline-2 focus-visible:outline-emerald-300 focus-visible:outline-offset-2 min-h-12"
         >
           Send on WhatsApp
         </a>
